@@ -87,6 +87,10 @@ h6 {
   filter: brightness(150%);
 }
 
+#about .row img {
+  filter: brightness(110%);
+}
+
 #header .profile h1 {
   font-size: 16px;
   margin: 0;
@@ -341,7 +345,7 @@ section {
 
 .about .content h3 {
   font-weight: 700;
-  font-size: 17px;
+  font-size: 24px;
   color: #83018e;
 }
 
