@@ -443,13 +443,13 @@ section {
 
 .skills .progress-bar-wrap {
   background: #2c2f3f;
-  height: 10px;
+  height: 5px;
 }
 
 .skills .progress-bar {
   width: 1px;
-  height: 10px;
-  transition: 0.9s;
+  height: 5px;
+  transition: 0.5s;
   background-color: #549d8a;
 }
 
