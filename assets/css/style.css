@@ -108,6 +108,17 @@ h6 {
   text-decoration: none;
 }
 
+#header .profile h2 {
+  font-size: 12px;
+  margin: 10;
+  padding: 50;
+  font-weight: 600;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  font-family: "Poppins", sans-serif;
+  color: #7d7c7c;
+}
+
 #header .profile .social-links a {
   font-size: 18px;
   display: inline-block;
@@ -487,7 +498,8 @@ section {
 
 .resume .resume-item h5 {
   font-size: 16px;
-  background: #ff9d9d;
+  background: #f8b1b1;
+  color: #bd3030;
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
