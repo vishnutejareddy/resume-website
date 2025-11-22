@@ -11,8 +11,9 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #fff;
+  color: #e8e8e8;
   background: #000;
+  line-height: 1.6;
 }
 
 a {
@@ -109,35 +110,49 @@ h6 {
 }
 
 #header .profile h2 {
-  font-size: 12px;
-  margin: 10;
-  padding: 50;
+  font-size: 13px;
+  margin: 10px 0 5px 0;
+  padding: 0;
   font-weight: 600;
   -moz-text-align-last: center;
   text-align-last: center;
   font-family: "Poppins", sans-serif;
-  color: #7d7c7c;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+#header .profile .profile-subtitle {
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #8a8a8a;
+  letter-spacing: 0.3px;
 }
 
 #header .profile .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #212431;
-  color: #fff;
+  background: rgba(253, 109, 109, 0.1);
+  color: #fd6d6d;
   line-height: 1;
   padding: 8px 0;
-  margin-right: 4px;
+  margin-right: 8px;
   border-radius: 50%;
   text-align: center;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
+  width: 38px;
+  height: 38px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(253, 109, 109, 0.3);
 }
 
 #header .profile .social-links a:hover {
   background: #fd6d6d;
   color: #fff;
   text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(253, 109, 109, 0.3);
 }
 
 #main {
@@ -330,34 +345,40 @@ section {
 }
 
 .section-title h2 {
-  font-size: 21px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
   color: #fd6d6d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .section-title h2::after {
   content: "";
   position: absolute;
   display: block;
-  width: 50px;
-  height: 3px;
-  background: #fd6d6d;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #fd6d6d 0%, #549d8a 100%);
   bottom: 0;
   left: 0;
+  border-radius: 2px;
 }
 
 .section-title p {
   margin-bottom: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ddd;
 }
 
 .about .content h3 {
   font-weight: 700;
-  font-size: 24px;
-  color: #83018e;
+  font-size: 26px;
+  color: #fd6d6d;
+  margin-bottom: 10px;
 }
 
 .about .content ul {
@@ -366,19 +387,22 @@ section {
 }
 
 .about .content ul li {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
+  font-size: 15px;
 }
 
 .about .content ul strong {
   margin-right: 10px;
+  color: #fd6d6d;
+  min-width: 90px;
 }
 
 .about .content ul i {
   font-size: 16px;
-  margin-right: 5px;
-  color: #fd6d6d;
+  margin-right: 8px;
+  color: #549d8a;
   line-height: 0;
 }
 
@@ -391,47 +415,74 @@ section {
 }
 
 .facts .count-box {
-  padding: 30px;
+  padding: 30px 20px;
   width: 100%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(253, 109, 109, 0.1);
+}
+
+.facts .count-box:hover {
+  background: rgba(253, 109, 109, 0.05);
+  transform: translateY(-5px);
+  border-color: rgba(253, 109, 109, 0.3);
 }
 
 .facts .count-box i {
   display: block;
-  font-size: 44px;
-  color: #83018e;
-  float: left;
-  line-height: 0;
+  font-size: 36px;
+  color: #fd6d6d;
+  margin-bottom: 15px;
+  line-height: 1;
 }
 
 .facts .count-box span {
-  font-size: 48px;
-  line-height: 40px;
+  font-size: 42px;
+  line-height: 1;
   display: block;
   font-weight: 700;
-  color: #fff;
-  margin-left: 60px;
+  color: #fd6d6d;
+  margin-bottom: 10px;
 }
 
 .facts .count-box p {
-  padding: 15px 0 0 0;
-  margin: 0 0 0 60px;
+  padding: 0;
+  margin: 0;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  color: #fff;
+  color: #ddd;
+  line-height: 1.6;
 }
 
-.facts .count-box a {
-  font-weight: 600;
+.facts .count-box p strong {
   display: block;
-  margin-top: 20px;
+  font-size: 16px;
   color: #fff;
-  font-size: 15px;
-  font-family: "Poppins", sans-serif;
-  transition: ease-in-out 0.3s;
+  margin-bottom: 5px;
+  font-weight: 600;
 }
 
-.facts .count-box a:hover {
-  color: #ff9d9d;
+.facts .count-box .platform-link {
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 12px;
+  color: #fd6d6d;
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid rgba(253, 109, 109, 0.3);
+  border-radius: 4px;
+}
+
+.facts .count-box .platform-link:hover {
+  color: #fff;
+  background: #fd6d6d;
+  border-color: #fd6d6d;
+  transform: translateX(3px);
 }
 
 .skills .progress {
@@ -439,71 +490,92 @@ section {
   display: block;
   background: none;
   border-radius: 0;
+  margin-bottom: 20px;
 }
 
 .skills .progress .skill {
   padding: 0;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   text-transform: uppercase;
   display: block;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
+  color: #fd6d6d;
 }
 
 .skills .progress-bar-wrap {
-  background: #2c2f3f;
-  height: 5px;
+  background: rgba(44, 47, 63, 0.6);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .skills .progress-bar {
   width: 1px;
-  height: 5px;
-  transition: 0.5s;
-  background-color: #549d8a;
+  height: 8px;
+  transition: 0.9s;
+  background: linear-gradient(90deg, #549d8a 0%, #fd6d6d 100%);
+  border-radius: 4px;
 }
 
 /*--------------------------------------------------------------
 # Resume
 --------------------------------------------------------------*/
 .resume .resume-title {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
   color: #fd6d6d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .resume .resume-item {
-  padding: 0 0 20px 20px;
+  padding: 0 0 25px 25px;
   margin-top: -2px;
-  border-left: 2px solid #549d8a;
+  border-left: 2px solid rgba(84, 157, 138, 0.5);
   position: relative;
 }
 
+.resume .resume-item:hover {
+  border-left-color: #549d8a;
+}
+
 .resume .resume-item h4 {
-  line-height: 18px;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
+  line-height: 1.4;
+  font-size: 19px;
+  font-weight: 700;
   font-family: "Poppins", sans-serif;
-  color: #fd6d6d;
-  margin-bottom: 10px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
 .resume .resume-item h5 {
-  font-size: 16px;
-  background: #f8b1b1;
-  color: #bd3030;
-  padding: 5px 15px;
+  font-size: 14px;
+  background: rgba(253, 109, 109, 0.15);
+  color: #fd6d6d;
+  padding: 6px 14px;
   display: inline-block;
   font-weight: 600;
   margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(253, 109, 109, 0.3);
+}
+
+.resume .resume-item h6 {
+  font-size: 15px;
+  color: #aaa;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .resume .resume-item ul {
@@ -836,4 +908,193 @@ section {
     width: auto;
     padding-right: 20px 15px;
   }
+}
+
+
+/* ===== Professional Enhancements ===== */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced section spacing */
+section {
+  padding: 80px 0;
+}
+
+/* Card-like effect for content sections */
+.about .row,
+.resume .row {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(253, 109, 109, 0.1);
+}
+
+/* Improved image styling */
+.about img {
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.about img:hover {
+  transform: scale(1.02);
+}
+
+/* Enhanced hero section */
+#hero h1 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+#hero p {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Better link styling */
+a {
+  transition: all 0.3s ease;
+}
+
+/* Improved list styling in resume */
+.resume .resume-item ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.resume .resume-item ul li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: #549d8a;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Enhanced navigation hover effects */
+.nav-menu a:hover,
+.nav-menu .active {
+  background: rgba(253, 109, 109, 0.1);
+  border-radius: 8px;
+}
+
+/* Improved mobile nav toggle */
+.mobile-nav-toggle:hover {
+  background-color: #ff9d9d;
+  transform: scale(1.05);
+}
+
+/* Better back to top button */
+.back-to-top {
+  box-shadow: 0 4px 12px rgba(253, 109, 109, 0.4);
+}
+
+.back-to-top:hover {
+  box-shadow: 0 6px 20px rgba(253, 109, 109, 0.6);
+  transform: translateY(-3px);
+}
+
+/* Enhanced facts section spacing */
+.facts .row {
+  gap: 20px 0;
+}
+
+/* Improved typography */
+p {
+  line-height: 1.8;
+}
+
+/* Better contrast for readability */
+.section-title p,
+.about .content p,
+.resume .resume-item p {
+  color: #d0d0d0;
+}
+
+/* Subtle animation for skill bars */
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+}
+
+.skills .progress-bar {
+  animation: slideIn 1.5s ease-out;
+}
+
+/* Enhanced header shadow */
+#header {
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Better spacing for profile section */
+#header .profile {
+  padding: 20px 15px;
+}
+
+/* Improved footer styling */
+#footer {
+  background: rgba(14, 36, 66, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Enhanced resume item hover effect */
+.resume .resume-item {
+  transition: all 0.3s ease;
+}
+
+.resume .resume-item:hover {
+  padding-left: 30px;
+}
+
+/* Better visual hierarchy for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Improved container max-width for better readability */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+  
+  .section-title h2 {
+    font-size: 24px;
+  }
+  
+  .facts .count-box {
+    margin-bottom: 20px;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+button, a, .count-box, .progress-bar, img {
+  transition: all 0.3s ease;
+}
+
+/* Better focus states for accessibility */
+a:focus, button:focus {
+  outline: 2px solid #fd6d6d;
+  outline-offset: 2px;
+}
+
+/* Enhanced profile image */
+#header .profile img {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(253, 109, 109, 0.2);
+}
+
+#header .profile img:hover {
+  box-shadow: 0 0 30px rgba(253, 109, 109, 0.4);
+  transform: scale(1.05);
 }
