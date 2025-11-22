@@ -259,4 +259,174 @@
    */
   new PureCounter();
 
+  /**
+   * Profile Image Pulse Effect on Hover
+   */
+  const profileImg = select('#header .profile img');
+  if (profileImg) {
+    profileImg.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.15) rotate(5deg)';
+      this.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    });
+    
+    profileImg.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1) rotate(0deg)';
+    });
+  }
+
+  /**
+   * Create Sparkle Effect
+   */
+  function createSparkle(x, y, container) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    container.appendChild(sparkle);
+    
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  /**
+   * Section Entry Sparkle Animation
+   */
+  const sections = select('section', true);
+  const sparkleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('sparkled')) {
+        entry.target.classList.add('sparkled');
+        
+        // Create multiple sparkles
+        for (let i = 0; i < 8; i++) {
+          setTimeout(() => {
+            const rect = entry.target.getBoundingClientRect();
+            const x = Math.random() * rect.width;
+            const y = Math.random() * 300;
+            createSparkle(x, y, entry.target);
+          }, i * 100);
+        }
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(section => {
+    section.style.position = 'relative';
+    sparkleObserver.observe(section);
+  });
+
+  /**
+   * Floating Particles Background
+   */
+  function createParticles() {
+    const hero = select('#hero');
+    if (!hero) return;
+    
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles-container';
+    hero.appendChild(particlesContainer);
+    
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  window.addEventListener('load', createParticles);
+
+  /**
+   * Skill Bar Glow Effect on Scroll
+   */
+  const progressBars = select('.progress-bar', true);
+  progressBars.forEach(bar => {
+    bar.addEventListener('animationend', function() {
+      this.classList.add('glow-effect');
+    });
+  });
+
+  /**
+   * Interactive Count Boxes
+   */
+  const countBoxes = select('.count-box', true);
+  countBoxes.forEach(box => {
+    box.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-10px) scale(1.05)';
+      this.style.boxShadow = '0 15px 40px rgba(253, 109, 109, 0.3)';
+    });
+    
+    box.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+      this.style.boxShadow = 'none';
+    });
+  });
+
+  /**
+   * Resume Items Slide-in Effect
+   */
+  const resumeItems = select('.resume-item', true);
+  const resumeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0)';
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  resumeItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-50px)';
+    item.style.transition = 'all 0.6s ease-out';
+    resumeObserver.observe(item);
+  });
+
+  /**
+   * Cursor Trail Effect
+   */
+  let cursorTrail = [];
+  const maxTrailLength = 10;
+
+  document.addEventListener('mousemove', (e) => {
+    if (window.innerWidth > 768) { // Only on desktop
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.style.left = e.pageX + 'px';
+      trail.style.top = e.pageY + 'px';
+      document.body.appendChild(trail);
+      
+      cursorTrail.push(trail);
+      
+      if (cursorTrail.length > maxTrailLength) {
+        const oldTrail = cursorTrail.shift();
+        oldTrail.remove();
+      }
+      
+      setTimeout(() => {
+        trail.remove();
+        cursorTrail = cursorTrail.filter(t => t !== trail);
+      }, 500);
+    }
+  });
+
+  /**
+   * Section Title Animation
+   */
+  const sectionTitles = select('.section-title h2', true);
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('title-animate');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sectionTitles.forEach(title => {
+    titleObserver.observe(title);
+  });
+
 })()
