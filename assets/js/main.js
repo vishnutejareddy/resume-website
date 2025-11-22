@@ -430,3 +430,315 @@
   });
 
 })()
+
+ 
+ /**
+   * Matrix Rain Effect in Hero Section
+   */
+  function createMatrixRain() {
+    const hero = select('#hero');
+    if (!hero) return;
+    
+    const canvas = document.createElement('canvas');
+    canvas.className = 'matrix-rain';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    hero.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#fd6d6d';
+      ctx.font = fontSize + 'px monospace';
+      
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    
+    setInterval(drawMatrix, 50);
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  }
+  
+  window.addEventListener('load', createMatrixRain);
+
+  /**
+   * Glitch Effect on Hover for Section Titles
+   */
+  const glitchTitles = select('.section-title h2', true);
+  glitchTitles.forEach(title => {
+    title.addEventListener('mouseenter', function() {
+      this.classList.add('glitch-active');
+      this.setAttribute('data-text', this.textContent);
+      
+      setTimeout(() => {
+        this.classList.remove('glitch-active');
+      }, 1000);
+    });
+  });
+
+  /**
+   * 3D Tilt Effect on Cards
+   */
+  const tiltElements = select('.count-box, .resume-item', true);
+  tiltElements.forEach(element => {
+    element.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+    
+    element.addEventListener('mouseleave', function() {
+      this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+
+  /**
+   * Parallax Scrolling Effect
+   */
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = select('[data-parallax]', true);
+    
+    parallaxElements.forEach(element => {
+      const speed = element.getAttribute('data-parallax') || 0.5;
+      element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+
+  /**
+   * Neon Pulse on Navigation Links
+   */
+  const navLinks = select('.nav-menu a', true);
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      this.classList.add('neon-pulse');
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      this.classList.remove('neon-pulse');
+    });
+  });
+
+  /**
+   * Typing Sound Effect Simulation
+   */
+  const typedElement = select('.typed');
+  if (typedElement) {
+    const observer = new MutationObserver(() => {
+      const ripple = document.createElement('div');
+      ripple.className = 'type-ripple';
+      typedElement.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+    
+    observer.observe(typedElement, { 
+      characterData: true, 
+      subtree: true, 
+      childList: true 
+    });
+  }
+
+  /**
+   * Exploding Confetti on Skill Bar Complete
+   */
+  function createConfetti(x, y) {
+    for (let i = 0; i < 20; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = x + 'px';
+      confetti.style.top = y + 'px';
+      confetti.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+      confetti.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+      confetti.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+      confetti.style.setProperty('--r', Math.random() * 360 + 'deg');
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), 1000);
+    }
+  }
+
+  const skillsSection = select('#skills');
+  if (skillsSection) {
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('confetti-triggered')) {
+          entry.target.classList.add('confetti-triggered');
+          
+          setTimeout(() => {
+            const rect = entry.target.getBoundingClientRect();
+            createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+          }, 2000);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    skillObserver.observe(skillsSection);
+  }
+
+  /**
+   * Holographic Card Effect
+   */
+  const holoCards = select('.count-box', true);
+  holoCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const xPercent = (x / rect.width) * 100;
+      const yPercent = (y / rect.height) * 100;
+      
+      this.style.setProperty('--mouse-x', xPercent + '%');
+      this.style.setProperty('--mouse-y', yPercent + '%');
+      this.classList.add('holo-active');
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.classList.remove('holo-active');
+    });
+  });
+
+  /**
+   * Shockwave Effect on Click
+   */
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth > 768) {
+      const shockwave = document.createElement('div');
+      shockwave.className = 'shockwave';
+      shockwave.style.left = e.pageX + 'px';
+      shockwave.style.top = e.pageY + 'px';
+      document.body.appendChild(shockwave);
+      
+      setTimeout(() => shockwave.remove(), 1000);
+    }
+  });
+
+  /**
+   * Floating Text Animation on Scroll
+   */
+  const floatTexts = select('.section-title p', true);
+  floatTexts.forEach(text => {
+    const words = text.textContent.split(' ');
+    text.innerHTML = words.map((word, i) => 
+      `<span class="float-word" style="animation-delay: ${i * 0.05}s">${word}</span>`
+    ).join(' ');
+  });
+
+  /**
+   * Lightning Strike Effect
+   */
+  function createLightning() {
+    const hero = select('#hero');
+    if (!hero) return;
+    
+    setInterval(() => {
+      if (Math.random() > 0.95) {
+        const lightning = document.createElement('div');
+        lightning.className = 'lightning';
+        lightning.style.left = Math.random() * 100 + '%';
+        hero.appendChild(lightning);
+        
+        setTimeout(() => lightning.remove(), 500);
+      }
+    }, 2000);
+  }
+  
+  window.addEventListener('load', createLightning);
+
+  /**
+   * Magnetic Button Effect
+   */
+  const socialLinks = select('.social-links a', true);
+  socialLinks.forEach(link => {
+    link.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) translateY(-3px)`;
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      this.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  /**
+   * Progress Bar Race Animation
+   */
+  const progressSection = select('#skills');
+  if (progressSection) {
+    const raceObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bars = select('.progress-bar', true);
+          bars.forEach((bar, index) => {
+            setTimeout(() => {
+              bar.classList.add('race-animation');
+            }, index * 200);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    raceObserver.observe(progressSection);
+  }
+
+  /**
+   * Cyberpunk Scan Line Effect
+   */
+  function createScanLine() {
+    const scanLine = document.createElement('div');
+    scanLine.className = 'scan-line';
+    document.body.appendChild(scanLine);
+  }
+  
+  window.addEventListener('load', createScanLine);
+
+  /**
+   * Ripple Effect on Resume Items
+   */
+  resumeItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      const ripple = document.createElement('div');
+      ripple.className = 'resume-ripple';
+      
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      this.appendChild(ripple);
+      
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
